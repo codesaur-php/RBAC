@@ -1,0 +1,28 @@
+{
+    "name": "codesaur/rbac",
+    "description": "An elegant object-oriented application development framework component for PHP 7.2 or newer",
+    "keywords": [
+        "rbac", "role-based access control",
+        "mongol", "mongolia", "mongolian", "монгол",
+        "codesaur", "narankhuu", "coden", "кодзавр", "наранхүү", "коден",
+        "ololt", "ололт", "мөнхийн", "мөнхийн-ололт", "мөнхийн ололт", "munkhiin ololt"
+    ],
+    "homepage": "https://ololt.mn/codesaur",
+    "authors": [
+        {
+            "name": "Narankhuu",
+            "email": "codesaur@gmail.com",
+            "homepage": "https://ololt.mn/narankhuu"
+        }
+    ],
+    "require": {
+        "codesaur/dataobject": ">=1.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "codesaur\\RBAC\\": "src/"
+        }
+    },
+    "license": "MIT",
+    "minimum-stability": "dev"
+}

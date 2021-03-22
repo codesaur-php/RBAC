@@ -1,0 +1,43 @@
+<?php
+
+/* DEV: v1.2021.03.22
+ * 
+ * This is an example script!
+ */
+
+require_once '../vendor/autoload.php';
+
+use codesaur\RBAC\Accounts;
+use codesaur\RBAC\RBACUser;
+
+try {
+    $dsn = 'mysql:host=localhost;charset=utf8';
+    $username = 'root';
+    $passwd = '';
+    $options = array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION);
+    
+    $pdo = new PDO($dsn, $username, $passwd, $options);
+    echo 'connected to mysql...<br/>';
+    
+    $database = 'rbac_example';
+    if ($_SERVER['HTTP_HOST'] === 'localhost'
+            && in_array($_SERVER['REMOTE_ADDR'], array('127.0.0.1', '::1'))
+    ) {
+        $pdo->exec("CREATE DATABASE IF NOT EXISTS $database COLLATE " . $pdo->quote('utf8_unicode_ci'));
+    }
+
+    $pdo->exec("USE $database");
+    echo 'started using example database!<br/>';
+} catch (Exception $ex) {
+    die('MySQL error => ' . $ex->getMessage());
+}
+
+$accounts = new Accounts($pdo);
+$account = $accounts->getBy('username', 'admin');
+
+var_dump(array('account' => $account));
+
+$rbacUser = new RBACUser($pdo, $account['id']);
+var_dump(((array)$rbacUser)['role']);
+
+echo $rbacUser->hasRole('system_coder') ? 'This user is system coder!' : 'This user doesn\'t have coder role!';
