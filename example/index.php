@@ -10,6 +10,9 @@ require_once '../vendor/autoload.php';
 use codesaur\RBAC\Accounts;
 use codesaur\RBAC\RBACUser;
 
+ini_set('display_errors', 'On');
+error_reporting(E_ALL & ~E_STRICT & ~E_NOTICE);
+
 try {
     $dsn = 'mysql:host=localhost;charset=utf8';
     $username = 'root';
@@ -28,16 +31,21 @@ try {
 
     $pdo->exec("USE $database");
     echo 'started using example database!<br/>';
+
+    $accounts = new Accounts($pdo);
+    $user = 'admin';
+    $account = $accounts->getBy('username', $user);
+    
+    if (!$account) {
+        throw new Exception("User {$user} not found!");
+    }
+
+    var_dump(array('account' => $account));
+
+    $rbacUser = new RBACUser($pdo, $account['id']);
+    var_dump(((array)$rbacUser)['role']);
+
+    echo $rbacUser->hasRole('system_coder') ? 'This user is system coder!' : 'This user doesn\'t have coder role!';
 } catch (Exception $ex) {
-    die('MySQL error => ' . $ex->getMessage());
+    die('[' . date('Y-m-d H:i:s'). ' Error] ' . $ex->getMessage());
 }
-
-$accounts = new Accounts($pdo);
-$account = $accounts->getBy('username', 'admin');
-
-var_dump(array('account' => $account));
-
-$rbacUser = new RBACUser($pdo, $account['id']);
-var_dump(((array)$rbacUser)['role']);
-
-echo $rbacUser->hasRole('system_coder') ? 'This user is system coder!' : 'This user doesn\'t have coder role!';
