@@ -29,7 +29,7 @@ class Permissions extends Model
         $this->createTable('rbac_permissions');
     }
     
-    public function initial()
+    function initial()
     {
         $table = $this->getName();
         if ($table !== 'rbac_permissions') {

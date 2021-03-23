@@ -28,7 +28,7 @@ class Roles extends Model
         $this->createTable('rbac_roles');
     }
     
-    public function initial()
+    function initial()
     {
         $table = $this->getName();        
         if ($table !== 'rbac_roles') {
