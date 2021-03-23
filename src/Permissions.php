@@ -26,7 +26,7 @@ class Permissions extends Model
            (new Column('updated_by', 'bigint', 20))->foreignKey('rbac_accounts(id)')
         ));
         
-        $this->setTable('rbac_permissions');
+        $this->createTable('rbac_permissions');
     }
     
     public function initial()

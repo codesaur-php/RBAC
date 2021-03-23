@@ -36,7 +36,7 @@ class Accounts extends Model
            (new Column('updated_by', 'bigint', 20))->foreignKey('rbac_accounts(id)')
         ));
         
-        $this->setTable('rbac_accounts');
+        $this->createTable('rbac_accounts');
     }
 
     // <editor-fold defaultstate="collapsed" desc="initial">
