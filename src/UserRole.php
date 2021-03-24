@@ -24,7 +24,7 @@ class UserRole extends Model
            (new Column('updated_by', 'bigint', 20))->foreignKey('rbac_accounts(id)')
         ));
         
-        $this->createTable('rbac_user_role');
+        $this->setCreateTable('rbac_user_role');
     }
     
     public function initial()

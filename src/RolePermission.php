@@ -25,6 +25,6 @@ class RolePermission extends Model
            (new Column('updated_by', 'bigint', 20))->foreignKey('rbac_accounts(id)')
         ));
         
-        $this->createTable('rbac_role_perm');
+        $this->setCreateTable('rbac_role_perm');
     }
 }

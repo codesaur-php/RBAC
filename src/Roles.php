@@ -25,7 +25,7 @@ class Roles extends Model
            (new Column('updated_by', 'bigint', 20))->foreignKey('rbac_accounts(id)')
         ));
         
-        $this->createTable('rbac_roles');
+        $this->setCreateTable('rbac_roles', 'utf8_unicode_ci');
     }
     
     function initial()
