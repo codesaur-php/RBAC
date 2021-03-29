@@ -37,7 +37,7 @@ try {
     $account = $accounts->getRow(array('username' => $user));
     
     if (!$account) {
-        throw new Exception("User {$user} not found!");
+        throw new Exception(__CLASS__ . ": User {$user} not found!");
     }
 
     var_dump(array('account' => $account));
@@ -47,5 +47,5 @@ try {
 
     echo $rbacUser->hasRole('system_coder') ? 'This user is system coder!' : 'This user doesn\'t have coder role!';
 } catch (Exception $ex) {
-    die('[' . date('Y-m-d H:i:s'). ' Error] ' . $ex->getMessage());
+    die('[' . date('Y-m-d H:i:s') . ' Error] ' . $ex->getMessage());
 }
