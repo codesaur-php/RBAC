@@ -14,7 +14,7 @@ class RBACUser implements JsonSerializable
         $roles = new Roles($conn);
         $user_role = new UserRole($conn);
         $sql =  'SELECT t1.role_id, t2.name, t2.alias '
-                . "FROM {$user_role->getName()} as t1 JOIN {$roles->getName()} as t2 "
+                . "FROM {$user_role->getName()} as t1 INNER JOIN {$roles->getName()} as t2 "
                 . 'ON t1.role_id = t2.id WHERE t1.user_id = :user_id AND t1.is_active = 1';
 
         $pdo_stmt = $conn->prepare($sql);

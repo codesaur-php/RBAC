@@ -13,7 +13,7 @@ class Role
         $permissions = new Permissions($conn);
         $role_perm = new RolePermission($conn);
         $sql =  "SELECT t2.name, t2.alias FROM {$role_perm->getName()} as t1 "
-                . "JOIN {$permissions->getName()} as t2 ON t1.permission_id = t2.id "
+                . "INNER JOIN {$permissions->getName()} as t2 ON t1.permission_id = t2.id "
                 . 'WHERE t1.role_id = :role_id AND t1.is_active = 1';
                 
         $pdo_stmt = $role_perm->prepare($sql);
