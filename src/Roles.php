@@ -25,15 +25,16 @@ class Roles extends Model
            (new Column('updated_by', 'bigint', 20))->foreignKey('rbac_accounts(id)')
         ));
         
-        $this->setCreateTable('rbac_roles', 'utf8_unicode_ci');
+        $this->setTable('rbac_roles', 'utf8_unicode_ci');
     }
     
-    function initial()
+    function __initial()
     {
         $table = $this->getName();        
         if ($table !== 'rbac_roles') {
             return;
         }
+        
         $nowdate = date('Y-m-d H:i:s');
         $query =  "INSERT INTO $table (id,created_at,name,description,alias) "
                 . "VALUES (1,'$nowdate','coder','Coder can do anything!','system')";

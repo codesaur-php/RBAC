@@ -26,10 +26,10 @@ class Permissions extends Model
            (new Column('updated_by', 'bigint', 20))->foreignKey('rbac_accounts(id)')
         ));
         
-        $this->setCreateTable('rbac_permissions', 'utf8_unicode_ci');
+        $this->setTable('rbac_permissions', 'utf8_unicode_ci');
     }
     
-    function initial()
+    function __initial()
     {
         $table = $this->getName();
         if ($table !== 'rbac_permissions') {

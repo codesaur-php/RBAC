@@ -34,12 +34,10 @@ try {
 
     $accounts = new Accounts($pdo);
     $user = 'admin';
-    $account = $accounts->getRow(array('username' => $user));
-    
+    $account = $accounts->getRowBy(array('username' => $user));    
     if (!$account) {
         throw new Exception(__CLASS__ . ": User {$user} not found!");
     }
-
     var_dump(array('account' => $account));
 
     $rbacUser = new RBACUser($pdo, $account['id']);
