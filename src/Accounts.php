@@ -9,9 +9,9 @@ use codesaur\DataObject\Column;
 
 class Accounts extends Model
 {
-    function __construct(PDO $conn)
+    function __construct(PDO $pdo)
     {
-        parent::__construct($conn);
+        parent::__construct($pdo);
         
         $this->setColumns(array(
            (new Column('id', 'bigint', 20))->auto()->primary()->unique()->notNull(),
