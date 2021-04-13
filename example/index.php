@@ -34,7 +34,7 @@ try {
 
     $accounts = new Accounts($pdo);
     $user = 'admin';
-    $account = $accounts->getRowBy(array('username' => $user));    
+    $account = $accounts->getRowBy(array('username' => $user));
     if (!$account) {
         throw new Exception(__CLASS__ . ": User {$user} not found!");
     }

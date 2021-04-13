@@ -42,7 +42,7 @@ class Accounts extends Model
     // <editor-fold defaultstate="collapsed" desc="initial">
     function __initial()
     {
-        $table = $this->getName();        
+        $table = $this->getName();
         if ($table !== 'rbac_accounts') {
             return;
         }
