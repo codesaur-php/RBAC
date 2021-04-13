@@ -21,9 +21,9 @@ class Permissions extends Model
            (new Column('alias', 'varchar', 16))->notNull(),
             new Column('is_active', 'tinyint', 1, 1),
             new Column('created_at', 'datetime'),
-           (new Column('created_by', 'bigint', 20))->foreignKey('rbac_accounts(id) ON UPDATE CASCADE'),
+           (new Column('created_by', 'bigint', 20))->foreignKey('rbac_accounts', 'id'),
             new Column('updated_at', 'datetime'),
-           (new Column('updated_by', 'bigint', 20))->foreignKey('rbac_accounts(id) ON UPDATE CASCADE')
+           (new Column('updated_by', 'bigint', 20))->foreignKey('rbac_accounts', 'id')
         ));
         
         $this->setTable('rbac_permissions', 'utf8_unicode_ci');
