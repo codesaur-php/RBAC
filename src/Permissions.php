@@ -37,8 +37,8 @@ class Permissions extends Model
         }
         
         $nowdate = date('Y-m-d H:i:s');
-        $query = "INSERT INTO $table (created_at,alias,module,name,description) "
-                . "VALUES ('$nowdate','system','system','system_mailer',''),"
+        $query = "INSERT INTO $table(created_at,alias,module,name,description) "
+                . "VALUES('$nowdate','system','system','system_mailer',''),"
                 . "('$nowdate','system','account','account_index',''),"
                 . "('$nowdate','system','account','account_retrieve',''),"
                 . "('$nowdate','system','account','account_insert',''),"
