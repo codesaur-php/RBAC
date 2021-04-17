@@ -17,7 +17,7 @@ class RolePermission extends Model
            (new Column('id', 'bigint', 20))->auto()->primary()->unique()->notNull(),
            (new Column('role_id', 'bigint', 20))->notNull()->foreignKey('rbac_roles', 'id', 'CASCADE'),
            (new Column('permission_id', 'bigint', 20))->notNull()->foreignKey('rbac_permissions', 'id', 'CASCADE'),
-           (new Column('alias', 'varchar', 16))->notNull(),
+           (new Column('alias', 'varchar', 64))->notNull(),
             new Column('is_active', 'tinyint', 1, 1),
             new Column('created_at', 'datetime'),
            (new Column('created_by', 'bigint', 20))->foreignKey('rbac_accounts', 'id'),
