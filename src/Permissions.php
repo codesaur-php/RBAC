@@ -85,8 +85,7 @@ class Permissions extends Model
                 . "('$nowdate','system','localization','translation_update',''),"
                 . "('$nowdate','system','localization','translation_delete',''),"
                 . "('$nowdate','system','localization','translation_initial',''),"
-                . "('$nowdate','system','localization','logger_index','')";
-        
+                . "('$nowdate','system','localization','logger_index','')";        
         $this->exec($query);
     }
 }
