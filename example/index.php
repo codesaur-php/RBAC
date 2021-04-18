@@ -30,7 +30,7 @@ try {
     }
 
     $pdo->exec("USE $database");
-    echo 'started using example database!<br/>';
+    echo "starting to using database [$database]!<br/>";
 
     $accounts = new Accounts($pdo);
     $user = 'admin';
