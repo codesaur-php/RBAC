@@ -35,7 +35,7 @@ try {
     }
 
     $pdo->exec("USE $database");
-    echo "starting to use database [$database]!<br/>";
+    echo "starting to use database [$database]<br/>";
 
     $accounts = new Accounts($pdo);
     $user = 'admin';
@@ -48,7 +48,7 @@ try {
     $rbacUser = new RBACUser($pdo, $account['id']);
     var_dump(((array)$rbacUser)['role'], json_encode((array)$rbacUser, JSON_PRETTY_PRINT));
 
-    echo $rbacUser->hasRole('system_coder') ? 'This user is system coder!' : 'This user doesn\'t have coder role!';
+    echo $rbacUser->hasRole('system_coder') ? 'This user is system coder.' : 'This user doesn\'t have coder role.';
 } catch (Exception $ex) {
     die('<br />{' . date('Y-m-d H:i:s') . '} Error[' . $ex->getCode() . '] => ' . $ex->getMessage());
 }
