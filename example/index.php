@@ -45,5 +45,5 @@ try {
 
     echo $rbacUser->hasRole('system_coder') ? 'This user is system coder!' : 'This user doesn\'t have coder role!';
 } catch (Exception $ex) {
-    die('[' . date('Y-m-d H:i:s') . ' Error] ' . $ex->getMessage());
+    die('<br />{' . date('Y-m-d H:i:s') . '} Error[' . $ex->getCode() . '] => ' . $ex->getMessage());
 }
