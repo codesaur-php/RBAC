@@ -1,11 +1,16 @@
 <?php
 
+namespace codesaur\RBAC\Example;
+
 /* DEV: v1.2021.03.22
  * 
  * This is an example script!
  */
 
 require_once '../vendor/autoload.php';
+
+use PDO;
+use Exception;
 
 use codesaur\RBAC\Accounts;
 use codesaur\RBAC\RBACUser;
