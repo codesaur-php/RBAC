@@ -7,6 +7,9 @@ namespace codesaur\RBAC\Example;
  * This is an example script!
  */
 
+ini_set('display_errors', 'On');
+error_reporting(E_ALL & ~E_STRICT & ~E_NOTICE);
+
 require_once '../vendor/autoload.php';
 
 use PDO;
@@ -14,9 +17,6 @@ use Exception;
 
 use codesaur\RBAC\Accounts;
 use codesaur\RBAC\RBACUser;
-
-ini_set('display_errors', 'On');
-error_reporting(E_ALL & ~E_STRICT & ~E_NOTICE);
 
 try {
     $dsn = 'mysql:host=localhost;charset=utf8';
