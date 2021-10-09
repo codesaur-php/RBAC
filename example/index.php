@@ -49,10 +49,8 @@ try {
 
     $rbacUser = new RBACUser($pdo, $account['id']);
     echo '<pre>';
-    print_r(((array)$rbacUser)['role']);
-    echo '</pre><hr><pre>';
-    print_r(json_encode((array)$rbacUser, JSON_PRETTY_PRINT));
-    echo '</pre><br/>';
+    print_r((array)$rbacUser);
+    echo '</pre><hr>';
 
     echo $rbacUser->hasRole('system_coder') ? 'This user is system coder.' : 'This user doesn\'t have coder role.';
 } catch (Exception $ex) {
