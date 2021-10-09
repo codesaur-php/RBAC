@@ -43,10 +43,16 @@ try {
     if (!$account) {
         throw new Exception(__CLASS__ . ": User {$user} not found!");
     }
-    var_dump(array('account' => $account));
+    echo '<pre>';
+    print_r(array('account' => $account));
+    echo '</pre><hr>';
 
     $rbacUser = new RBACUser($pdo, $account['id']);
-    var_dump(((array)$rbacUser)['role'], json_encode((array)$rbacUser, JSON_PRETTY_PRINT));
+    echo '<pre>';
+    print_r(((array)$rbacUser)['role']);
+    echo '</pre><hr><pre>';
+    print_r(json_encode((array)$rbacUser, JSON_PRETTY_PRINT));
+    echo '</pre><br/>';
 
     echo $rbacUser->hasRole('system_coder') ? 'This user is system coder.' : 'This user doesn\'t have coder role.';
 } catch (Exception $ex) {
