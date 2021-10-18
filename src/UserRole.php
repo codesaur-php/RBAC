@@ -36,7 +36,7 @@ class UserRole extends Model
         
         $nowdate = date('Y-m-d H:i:s');
         $query = "INSERT INTO $table(id,created_at,user_id,role_id)"
-                . " VALUES(1,'$nowdate',1,1)";        
+                . " VALUES(1,'$nowdate',1,1)";
         $this->exec($query);
     }
 }
