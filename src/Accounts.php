@@ -31,9 +31,9 @@ class Accounts extends Model
             new Column('status', 'tinyint', 1, 0),
             new Column('is_active', 'tinyint', 1, 1),
             new Column('created_at', 'datetime'),
-           (new Column('created_by', 'bigint', 20))->foreignKey('rbac_accounts', 'id'),
+           (new Column('created_by', 'bigint', 20))->constraints('CONSTRAINT rbac_accounts_fk_created_by FOREIGN KEY (created_by) REFERENCES rbac_accounts(id) ON DELETE SET NULL ON UPDATE CASCADE'),
             new Column('updated_at', 'datetime'),
-           (new Column('updated_by', 'bigint', 20))->foreignKey('rbac_accounts', 'id')
+           (new Column('updated_by', 'bigint', 20))->constraints('CONSTRAINT rbac_accounts_fk_updated_by FOREIGN KEY (updated_by) REFERENCES rbac_accounts(id) ON DELETE SET NULL ON UPDATE CASCADE')
         ));
         
         $this->setTable('rbac_accounts', 'utf8_unicode_ci');

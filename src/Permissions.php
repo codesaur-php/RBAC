@@ -21,9 +21,9 @@ class Permissions extends Model
            (new Column('alias', 'varchar', 64))->notNull(),
             new Column('is_active', 'tinyint', 1, 1),
             new Column('created_at', 'datetime'),
-           (new Column('created_by', 'bigint', 20))->foreignKey('rbac_accounts', 'id'),
+           (new Column('created_by', 'bigint', 20))->constraints('CONSTRAINT rbac_permissions_fk_created_by FOREIGN KEY (created_by) REFERENCES rbac_accounts(id) ON DELETE SET NULL ON UPDATE CASCADE'),
             new Column('updated_at', 'datetime'),
-           (new Column('updated_by', 'bigint', 20))->foreignKey('rbac_accounts', 'id')
+           (new Column('updated_by', 'bigint', 20))->constraints('CONSTRAINT rbac_permissions_fk_updated_by FOREIGN KEY (updated_by) REFERENCES rbac_accounts(id) ON DELETE SET NULL ON UPDATE CASCADE')
         ));
         
         $this->setTable('rbac_permissions', 'utf8_unicode_ci');

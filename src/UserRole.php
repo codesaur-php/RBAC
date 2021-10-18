@@ -15,13 +15,13 @@ class UserRole extends Model
         
         $this->setColumns(array(
            (new Column('id', 'bigint', 20))->auto()->primary()->unique()->notNull(),
-           (new Column('user_id', 'bigint', 20))->notNull()->foreignKey('rbac_accounts', 'id', 'CASCADE'),
-           (new Column('role_id', 'bigint', 20))->notNull()->foreignKey('rbac_roles', 'id', 'CASCADE'),
+           (new Column('user_id', 'bigint', 20))->notNull()->constraints('CONSTRAINT rbac_user_role_fk_user_id FOREIGN KEY (user_id) REFERENCES rbac_accounts(id) ON DELETE CASCADE ON UPDATE CASCADE'),
+           (new Column('role_id', 'bigint', 20))->notNull()->constraints('CONSTRAINT rbac_user_role_fk_role_id FOREIGN KEY (role_id) REFERENCES rbac_roles(id) ON DELETE CASCADE ON UPDATE CASCADE'),
             new Column('is_active', 'tinyint', 1, 1),
             new Column('created_at', 'datetime'),
-           (new Column('created_by', 'bigint', 20))->foreignKey('rbac_accounts', 'id'),
+           (new Column('created_by', 'bigint', 20))->constraints('CONSTRAINT rbac_user_role_fk_created_by FOREIGN KEY (created_by) REFERENCES rbac_accounts(id) ON DELETE SET NULL ON UPDATE CASCADE'),
             new Column('updated_at', 'datetime'),
-           (new Column('updated_by', 'bigint', 20))->foreignKey('rbac_accounts', 'id')
+           (new Column('updated_by', 'bigint', 20))->constraints('CONSTRAINT rbac_user_role_fk_updated_by FOREIGN KEY (updated_by) REFERENCES rbac_accounts(id) ON DELETE SET NULL ON UPDATE CASCADE')
         ));
         
         $this->setTable('rbac_user_role');
