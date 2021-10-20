@@ -15,16 +15,30 @@ class RolePermission extends Model
         
         $this->setColumns(array(
            (new Column('id', 'bigint', 20))->auto()->primary()->unique()->notNull(),
-           (new Column('role_id', 'bigint', 20))->notNull()->constraints('CONSTRAINT rbac_role_perm_fk_role_id  FOREIGN KEY (role_id) REFERENCES rbac_roles(id) ON DELETE CASCADE ON UPDATE CASCADE'),
-           (new Column('permission_id', 'bigint', 20))->notNull()->constraints('CONSTRAINT rbac_role_perm_fk_permission_id FOREIGN KEY (permission_id) REFERENCES rbac_permissions(id) ON DELETE CASCADE ON UPDATE CASCADE'),
+           (new Column('role_id', 'bigint', 20))->notNull(),
+           (new Column('permission_id', 'bigint', 20))->notNull(),
            (new Column('alias', 'varchar', 64))->notNull(),
             new Column('is_active', 'tinyint', 1, 1),
             new Column('created_at', 'datetime'),
-           (new Column('created_by', 'bigint', 20))->constraints('CONSTRAINT rbac_role_perm_fk_created_by FOREIGN KEY (created_by) REFERENCES rbac_accounts(id) ON DELETE SET NULL ON UPDATE CASCADE'),
+            new Column('created_by', 'bigint', 20),
             new Column('updated_at', 'datetime'),
-           (new Column('updated_by', 'bigint', 20))->constraints('CONSTRAINT rbac_role_perm_fk_updated_by FOREIGN KEY (updated_by) REFERENCES rbac_accounts(id) ON DELETE SET NULL ON UPDATE CASCADE')
+            new Column('updated_by', 'bigint', 20)
         ));
         
         $this->setTable('rbac_role_perm', 'utf8_unicode_ci');
+    }
+    
+    function __initial()
+    {
+        parent::__initial();
+        
+        $table = $this->getName();
+        
+        $this->setForeignKeyChecks(false);
+        $this->exec("ALTER TABLE $table ADD CONSTRAINT {$table}_fk_role_id FOREIGN KEY (role_id) REFERENCES rbac_roles(id) ON DELETE CASCADE ON UPDATE CASCADE");
+        $this->exec("ALTER TABLE $table ADD CONSTRAINT {$table}_fk_permission_id FOREIGN KEY (permission_id) REFERENCES rbac_permissions(id) ON DELETE CASCADE ON UPDATE CASCADE");
+        $this->exec("ALTER TABLE $table ADD CONSTRAINT {$table}_fk_created_by FOREIGN KEY (created_by) REFERENCES rbac_accounts(id) ON DELETE SET NULL ON UPDATE CASCADE");
+        $this->exec("ALTER TABLE $table ADD CONSTRAINT {$table}_fk_updated_by FOREIGN KEY (updated_by) REFERENCES rbac_accounts(id) ON DELETE SET NULL ON UPDATE CASCADE");
+        $this->setForeignKeyChecks(true);
     }
 }

@@ -16,7 +16,7 @@
         }
     ],
     "require": {
-        "codesaur/dataobject": ">=2.5.5"
+        "codesaur/dataobject": ">=3.0"
     },
     "autoload": {
         "psr-4": {
