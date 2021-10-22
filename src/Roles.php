@@ -39,7 +39,7 @@ class Roles extends Model
         $this->exec("ALTER TABLE $table ADD CONSTRAINT {$table}_fk_updated_by FOREIGN KEY (updated_by) REFERENCES rbac_accounts(id) ON DELETE SET NULL ON UPDATE CASCADE");
         $this->setForeignKeyChecks(true);
         
-        if ($table !== 'rbac_roles') {
+        if ($table != 'rbac_roles') {
             return;
         }
         
