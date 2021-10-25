@@ -24,7 +24,7 @@ class UserRole extends Model
             new Column('updated_by', 'bigint', 20)
         ));
         
-        $this->setTable('rbac_user_role');
+        $this->setTable('rbac_user_role', 'utf8_unicode_ci');
     }
     
     public function __initial()
