@@ -28,7 +28,7 @@ class Accounts extends Model
             new Column('photo', 'varchar', 256),
             new Column('legend', 'int', 4, 1),
             new Column('code', 'varchar', 6),
-            new Column('status', 'tinyint', 1, 0),
+            new Column('status', 'tinyint', 1, 1),
             new Column('is_active', 'tinyint', 1, 1),
             new Column('created_at', 'datetime'),
             new Column('created_by', 'bigint', 20),
@@ -56,8 +56,8 @@ class Accounts extends Model
         
         $now_date = date('Y-m-d H:i:s');
         $password = $this->quote(password_hash('password', PASSWORD_BCRYPT));
-        $query = "INSERT INTO $table(id,created_at,username,password,first_name,last_name,email,status)"
-                . " VALUES(1,'$now_date','admin',$password,'Admin','System','admin@example.com',1)";
+        $query = "INSERT INTO $table(id,created_at,username,password,first_name,last_name,email)"
+                . " VALUES(1,'$now_date','admin',$password,'Admin','System','admin@example.com')";
         $this->exec($query);
     }
     // </editor-fold>
