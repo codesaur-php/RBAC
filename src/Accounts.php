@@ -23,7 +23,7 @@ class Accounts extends Model
             new Column('address', 'varchar', 256),
             new Column('city', 'varchar', 256),
             new Column('country', 'varchar', 4),
-           (new Column('email', 'varchar', 128))->unique(),
+           (new Column('email', 'varchar', 143))->unique(),
             new Column('photo', 'varchar', 256),
             new Column('legend', 'int', 4, 1),
             new Column('code', 'varchar', 6),
