@@ -53,7 +53,6 @@ class Permissions extends Model
                 . "('$nowdate','system','account','account_delete',''),"
                 . "('$nowdate','system','account','account_initial',''),"
                 . "('$nowdate','system','account','account_rbac',''),"
-                . "('$nowdate','system','account','account_organization_set',''),"
                 . "('$nowdate','system','organization','organization_index',''),"
                 . "('$nowdate','system','organization','organization_insert',''),"
                 . "('$nowdate','system','organization','organization_update',''),"
