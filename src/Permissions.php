@@ -46,17 +46,17 @@ class Permissions extends Model
         
         $nowdate = date('Y-m-d H:i:s');
         $query = "INSERT INTO $table(created_at,alias,module,name,description) "
-                . "VALUES('$nowdate','system','system','system_settings',''),"
+                . "VALUES('$nowdate','system','log','logger',''),"
+                . "('$nowdate','system','account','rbac',''),"
                 . "('$nowdate','system','account','account_index',''),"
                 . "('$nowdate','system','account','account_insert',''),"
                 . "('$nowdate','system','account','account_update',''),"
                 . "('$nowdate','system','account','account_delete',''),"
-                . "('$nowdate','system','account','account_initial',''),"
-                . "('$nowdate','system','account','account_rbac',''),"
                 . "('$nowdate','system','organization','organization_index',''),"
                 . "('$nowdate','system','organization','organization_insert',''),"
                 . "('$nowdate','system','organization','organization_update',''),"
                 . "('$nowdate','system','organization','organization_delete',''),"
+                . "('$nowdate','system','content','content_settings',''),"
                 . "('$nowdate','system','content','content_index',''),"
                 . "('$nowdate','system','content','content_insert',''),"
                 . "('$nowdate','system','content','content_update',''),"
@@ -67,8 +67,7 @@ class Permissions extends Model
                 . "('$nowdate','system','localization','localization_update',''),"
                 . "('$nowdate','system','localization','localization_delete',''),"
                 . "('$nowdate','system','localization','localization_initial',''),"
-                . "('$nowdate','system','documentation','documentation',''),"
-                . "('$nowdate','system','localization','logger','')";
+                . "('$nowdate','system','documentation','documentation','')";
         $this->exec($query);
     }
 }
