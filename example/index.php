@@ -14,6 +14,7 @@ require_once '../vendor/autoload.php';
 
 use PDO;
 use Exception;
+use Throwable;
 
 use codesaur\RBAC\Accounts;
 use codesaur\RBAC\RBACUser;
@@ -28,9 +29,7 @@ try {
     echo 'connected to mysql...<br/>';
     
     $database = 'rbac_example';
-    if ($_SERVER['HTTP_HOST'] === 'localhost'
-            && in_array($_SERVER['REMOTE_ADDR'], array('127.0.0.1', '::1'))
-    ) {
+    if (in_array($_SERVER['REMOTE_ADDR'], array('127.0.0.1', '::1'))) {
         $pdo->exec("CREATE DATABASE IF NOT EXISTS $database COLLATE " . $pdo->quote('utf8_unicode_ci'));
     }
 
@@ -53,6 +52,6 @@ try {
     echo '</pre><hr>';
 
     echo $rbacUser->hasRole('system_coder') ? 'This user is system coder.' : 'This user doesn\'t have coder role.';
-} catch (Exception $ex) {
-    die('<br />{' . date('Y-m-d H:i:s') . '} Error[' . $ex->getCode() . '] => ' . $ex->getMessage());
+} catch (Throwable $e) {
+    die('<br />{' . date('Y-m-d H:i:s') . '} Error[' . $e->getCode() . '] => ' . $e->getMessage());
 }
