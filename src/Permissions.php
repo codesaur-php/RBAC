@@ -15,7 +15,7 @@ class Permissions extends Model
         
         $this->setColumns(array(
            (new Column('id', 'bigint', 8))->auto()->primary()->unique()->notNull(),
-           (new Column('name', 'varchar', 128))->notNull(),
+           (new Column('name', 'varchar', 128))->unique()->notNull(),
             new Column('module', 'varchar', 128, 'general'),
             new Column('description', 'varchar', 255),
            (new Column('alias', 'varchar', 64))->notNull(),
