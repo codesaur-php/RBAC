@@ -25,7 +25,7 @@ class RolePermission extends Model
             new Column('updated_by', 'bigint', 8)
         ));
         
-        $this->setTable('rbac_role_perm', 'utf8_unicode_ci');
+        $this->setTable('rbac_role_permission', 'utf8_unicode_ci');
     }
     
     function __initial()
