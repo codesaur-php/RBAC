@@ -39,35 +39,5 @@ class Permissions extends Model
         $this->exec("ALTER TABLE $table ADD CONSTRAINT {$table}_fk_created_by FOREIGN KEY (created_by) REFERENCES rbac_accounts(id) ON DELETE SET NULL ON UPDATE CASCADE");
         $this->exec("ALTER TABLE $table ADD CONSTRAINT {$table}_fk_updated_by FOREIGN KEY (updated_by) REFERENCES rbac_accounts(id) ON DELETE SET NULL ON UPDATE CASCADE");
         $this->setForeignKeyChecks(true);
-
-        if ($table != 'rbac_permissions') {
-            return;
-        }
-        
-        $nowdate = date('Y-m-d H:i:s');
-        $query = "INSERT INTO $table(created_at,alias,module,name,description) "
-            . "VALUES('$nowdate','system','log','logger',''),"
-            . "('$nowdate','system','account','rbac',''),"
-            . "('$nowdate','system','account','account_index',''),"
-            . "('$nowdate','system','account','account_insert',''),"
-            . "('$nowdate','system','account','account_update',''),"
-            . "('$nowdate','system','account','account_delete',''),"
-            . "('$nowdate','system','organization','organization_index',''),"
-            . "('$nowdate','system','organization','organization_insert',''),"
-            . "('$nowdate','system','organization','organization_update',''),"
-            . "('$nowdate','system','organization','organization_delete',''),"
-            . "('$nowdate','system','content','content_settings',''),"
-            . "('$nowdate','system','content','content_index',''),"
-            . "('$nowdate','system','content','content_insert',''),"
-            . "('$nowdate','system','content','content_update',''),"
-            . "('$nowdate','system','content','content_delete',''),"
-            . "('$nowdate','system','content','content_initial',''),"
-            . "('$nowdate','system','localization','localization_index',''),"
-            . "('$nowdate','system','localization','localization_insert',''),"
-            . "('$nowdate','system','localization','localization_update',''),"
-            . "('$nowdate','system','localization','localization_delete',''),"
-            . "('$nowdate','system','localization','localization_initial',''),"
-            . "('$nowdate','system','documentation','documentation','')";
-        $this->exec($query);
     }
 }
