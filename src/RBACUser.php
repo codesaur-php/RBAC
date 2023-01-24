@@ -2,14 +2,11 @@
 
 namespace codesaur\RBAC;
 
-use PDO;
-use JsonSerializable;
-
-class RBACUser implements JsonSerializable
+class RBACUser implements \JsonSerializable
 {
-    public $role = array();
+    public array $role = [];
     
-    public function __construct(PDO $pdo, $user_id)
+    public function __construct(\PDO $pdo, int $user_id)
     {
         $roles = new Roles($pdo);
         $user_role = new UserRole($pdo);
@@ -17,11 +14,9 @@ class RBACUser implements JsonSerializable
             . " FROM {$user_role->getName()} t1 INNER JOIN {$roles->getName()} t2"
             . ' ON t1.role_id=t2.id WHERE t1.user_id=:user_id AND t1.is_active=1';
         $pdo_stmt = $pdo->prepare($sql);
-        $pdo_stmt->execute(array(':user_id' => $user_id));
-        
-        $this->role = array();
+        $pdo_stmt->execute([':user_id' => $user_id]);
         if ($pdo_stmt->rowCount()) {
-            while ($row = $pdo_stmt->fetch(PDO::FETCH_ASSOC)) {
+            while ($row = $pdo_stmt->fetch(\PDO::FETCH_ASSOC)) {
                 $this->role["{$row['alias']}_{$row['name']}"] = (new Role())->getPermissions($pdo, $row['role_id']);
             }
         }
@@ -57,16 +52,16 @@ class RBACUser implements JsonSerializable
         return false;
     }
     
-    public function jsonSerialize()
+    public function jsonSerialize(): mixed
     {
-        $role_permissions = array();
+        $role_permissions = [];
         
         foreach ($this->role as $name => $role) {
             if (!$role instanceof Role) {
                 continue;
             }
             
-            $role_permissions[$name] = array();
+            $role_permissions[$name] = [];
             
             foreach ($role->permissions as $permission => $granted) {
                 $role_permissions[$name][$permission] = $granted;

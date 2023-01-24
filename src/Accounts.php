@@ -2,18 +2,16 @@
 
 namespace codesaur\RBAC;
 
-use PDO;
-
 use codesaur\DataObject\Model;
 use codesaur\DataObject\Column;
 
 class Accounts extends Model
 {
-    function __construct(PDO $pdo)
+    function __construct(\PDO $pdo)
     {
         parent::__construct($pdo);
         
-        $this->setColumns(array(
+        $this->setColumns([
            (new Column('id', 'bigint', 8))->auto()->primary()->unique()->notNull(),
            (new Column('username', 'varchar', 143))->unique(),
             new Column('password', 'varchar', 255, ''),
@@ -29,7 +27,7 @@ class Accounts extends Model
             new Column('created_by', 'bigint', 8),
             new Column('updated_at', 'datetime'),
             new Column('updated_by', 'bigint', 8)
-        ));
+        ]);
         
         $this->setTable('rbac_accounts', 'utf8_unicode_ci');
     }
@@ -39,8 +37,7 @@ class Accounts extends Model
     {
         parent::__initial();
         
-        $table = $this->getName();        
-        
+        $table = $this->getName();
         if ($table != 'rbac_accounts') {
             $this->setForeignKeyChecks(false);
             $this->exec("ALTER TABLE $table ADD CONSTRAINT {$table}_fk_created_by FOREIGN KEY (created_by) REFERENCES rbac_accounts(id) ON DELETE SET NULL ON UPDATE CASCADE");
@@ -50,7 +47,7 @@ class Accounts extends Model
         }
         
         $now_date = date('Y-m-d H:i:s');
-        $password = $this->quote(password_hash('password', PASSWORD_BCRYPT));
+        $password = $this->quote(password_hash('password', \PASSWORD_BCRYPT));
         $query = "INSERT INTO $table(id,created_at,username,password,first_name,last_name,email)"
             . " VALUES(1,'$now_date','admin',$password,'Admin','System','admin@example.com')";
         $this->exec($query);

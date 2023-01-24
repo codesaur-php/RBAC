@@ -2,18 +2,16 @@
 
 namespace codesaur\RBAC;
 
-use PDO;
-
 use codesaur\DataObject\Model;
 use codesaur\DataObject\Column;
 
 class Permissions extends Model
 {
-    function __construct(PDO $pdo)
+    function __construct(\PDO $pdo)
     {
         parent::__construct($pdo);
         
-        $this->setColumns(array(
+        $this->setColumns([
            (new Column('id', 'bigint', 8))->auto()->primary()->unique()->notNull(),
            (new Column('name', 'varchar', 128))->unique()->notNull(),
             new Column('module', 'varchar', 128, 'general'),
@@ -24,7 +22,7 @@ class Permissions extends Model
             new Column('created_by', 'bigint', 8),
             new Column('updated_at', 'datetime'),
             new Column('updated_by', 'bigint', 8)
-        ));
+        ]);
         
         $this->setTable('rbac_permissions', 'utf8_unicode_ci');
     }
