@@ -42,8 +42,9 @@ class Roles extends Model
         }
         
         $nowdate = date('Y-m-d H:i:s');
-        $query = "INSERT INTO $table(id,created_at,name,description,alias)"
-            . " VALUES(1,'$nowdate','coder','Coder can do anything!','system')";
+        $query =
+            "INSERT INTO $table(id,created_at,name,description,alias) " .
+            "VALUES(1,'$nowdate','coder','Coder can do anything!','system')";
         $this->exec($query);
     }
 }

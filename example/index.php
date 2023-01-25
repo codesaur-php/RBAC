@@ -8,7 +8,7 @@ namespace codesaur\RBAC\Example;
  */
 
 ini_set('display_errors', 'On');
-error_reporting(\E_ALL & ~\E_STRICT & ~\E_NOTICE);
+error_reporting(\E_ALL);
 
 require_once '../vendor/autoload.php';
 
@@ -36,7 +36,7 @@ try {
     $user = 'admin';
     $account = $accounts->getRowBy(['username' => $user]);
     if (!$account) {
-        throw new \Exception(__CLASS__ . ": User {$user} not found!");
+        throw new \Exception(__CLASS__ . ": User $user not found!");
     }
     echo '<pre>';
     print_r(['account' => $account]);
