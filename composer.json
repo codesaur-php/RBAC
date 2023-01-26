@@ -12,7 +12,8 @@
         }
     ],
     "require": {
-        "codesaur/dataobject": ">=3.4.2"
+        "ext-json": "*",
+        "codesaur/dataobject": ">=3.4.3"
     },
     "autoload": {
         "psr-4": {
