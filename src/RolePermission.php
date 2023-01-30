@@ -7,9 +7,9 @@ use codesaur\DataObject\Column;
 
 class RolePermission extends Model
 {
-    function __construct(\PDO $pdo)
+    public function __construct(\PDO $pdo)
     {
-        parent::__construct($pdo);
+        $this->setInstance($pdo);
         
         $this->setColumns([
            (new Column('id', 'bigint', 8))->auto()->primary()->unique()->notNull(),
@@ -26,10 +26,8 @@ class RolePermission extends Model
         $this->setTable('rbac_role_permission', 'utf8_unicode_ci');
     }
     
-    function __initial()
+    protected function __initial()
     {
-        parent::__initial();
-        
         $table = $this->getName();
         
         $this->setForeignKeyChecks(false);

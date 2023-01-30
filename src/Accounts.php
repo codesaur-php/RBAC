@@ -7,9 +7,9 @@ use codesaur\DataObject\Column;
 
 class Accounts extends Model
 {
-    function __construct(\PDO $pdo)
+    public function __construct(\PDO $pdo)
     {
-        parent::__construct($pdo);
+        $this->setInstance($pdo);
         
         $this->setColumns([
            (new Column('id', 'bigint', 8))->auto()->primary()->unique()->notNull(),
@@ -33,10 +33,8 @@ class Accounts extends Model
     }
 
     // <editor-fold defaultstate="collapsed" desc="initial">
-    function __initial()
+    protected function __initial()
     {
-        parent::__initial();
-        
         $table = $this->getName();
         if ($table != 'rbac_accounts') {
             $this->setForeignKeyChecks(false);
