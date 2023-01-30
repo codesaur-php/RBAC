@@ -13,7 +13,7 @@
     ],
     "require": {
         "ext-json": "*",
-        "codesaur/dataobject": ">=4.0.0"
+        "codesaur/dataobject": ">=4.1.0"
     },
     "autoload": {
         "psr-4": {
