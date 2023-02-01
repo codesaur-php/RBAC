@@ -27,5 +27,5 @@ class Role
     public function hasPermission(string $permissionName): bool
     {
         return $this->permissions[$permissionName] ?? false;
-    }    
+    }
 }
