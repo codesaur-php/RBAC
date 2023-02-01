@@ -10,7 +10,7 @@ class RBACUser implements \JsonSerializable
     {
         $roles = new Roles($pdo);
         $user_role = new UserRole($pdo);
-        $sql =  'SELECT t1.role_id, t2.name, t2.alias'
+        $sql = 'SELECT t1.role_id, t2.name, t2.alias'
             . " FROM {$user_role->getName()} t1 INNER JOIN {$roles->getName()} t2"
             . ' ON t1.role_id=t2.id WHERE t1.user_id=:user_id AND t1.is_active=1';
         $pdo_stmt = $pdo->prepare($sql);
@@ -24,7 +24,7 @@ class RBACUser implements \JsonSerializable
 
     public function hasRole(string $roleName): bool
     {
-        foreach (array_keys($this->role) as $name) {
+        foreach (\array_keys($this->role) as $name) {
             if ($name == $roleName) {
                 return true;
             }

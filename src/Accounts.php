@@ -44,8 +44,8 @@ class Accounts extends Model
             return;
         }
         
-        $now_date = date('Y-m-d H:i:s');
-        $password = $this->quote(password_hash('password', \PASSWORD_BCRYPT));
+        $now_date = \date('Y-m-d H:i:s');
+        $password = $this->quote(\password_hash('password', \PASSWORD_BCRYPT));
         $query =
             "INSERT INTO $table(id,created_at,username,password,first_name,last_name,email) " .
             "VALUES(1,'$now_date','admin',$password,'Admin','System','admin@example.com')";

@@ -39,7 +39,7 @@ class Roles extends Model
             return;
         }
         
-        $nowdate = date('Y-m-d H:i:s');
+        $nowdate = \date('Y-m-d H:i:s');
         $query =
             "INSERT INTO $table(id,created_at,name,description,alias) " .
             "VALUES(1,'$nowdate','coder','Coder can do anything!','system')";

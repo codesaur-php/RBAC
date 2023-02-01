@@ -7,8 +7,8 @@ namespace codesaur\RBAC\Example;
  * This is an example script!
  */
 
-ini_set('display_errors', 'On');
-error_reporting(\E_ALL);
+\ini_set('display_errors', 'On');
+\error_reporting(\E_ALL);
 
 require_once '../vendor/autoload.php';
 
@@ -25,7 +25,7 @@ try {
     echo 'connected to mysql...<br/>';
     
     $database = 'rbac_example';
-    if (in_array($_SERVER['REMOTE_ADDR'], ['127.0.0.1', '::1'])) {
+    if (\in_array($_SERVER['REMOTE_ADDR'], ['127.0.0.1', '::1'])) {
         $pdo->exec("CREATE DATABASE IF NOT EXISTS $database COLLATE " . $pdo->quote('utf8_unicode_ci'));
     }
 
@@ -39,12 +39,12 @@ try {
         throw new \Exception(__CLASS__ . ": User $user not found!");
     }
     echo '<pre>';
-    print_r(['account' => $account]);
+    \print_r(['account' => $account]);
     echo '</pre><hr>';
 
     $rbacUser = new RBACUser($pdo, $account['id']);
     echo '<pre>';
-    print_r((array) $rbacUser);
+    \print_r((array) $rbacUser);
     echo '</pre><hr>';
 
     echo $rbacUser->hasRole('system_coder') ? 'This user is system coder.' : 'This user doesn\'t have coder role.';
