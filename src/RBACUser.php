@@ -54,20 +54,17 @@ class RBACUser implements \JsonSerializable
     
     public function jsonSerialize(): mixed
     {
-        $role_permissions = [];
-        
+        $role_permissions = [];        
         foreach ($this->role as $name => $role) {
             if (!$role instanceof Role) {
                 continue;
             }
             
-            $role_permissions[$name] = [];
-            
+            $role_permissions[$name] = [];            
             foreach ($role->permissions as $permission => $granted) {
                 $role_permissions[$name][$permission] = $granted;
             }
-        }
-        
+        }        
         return $role_permissions;
     }
 }

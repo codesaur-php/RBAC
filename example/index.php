@@ -48,6 +48,6 @@ try {
     echo '</pre><hr>';
 
     echo $rbacUser->hasRole('system_coder') ? 'This user is system coder.' : 'This user doesn\'t have coder role.';
-} catch (\Throwable $th) {
-    die('<br />{' . date('Y-m-d H:i:s') . '} Error[' . $th->getCode() . '] => ' . $th->getMessage());
+} catch (\Throwable $e) {
+    die('<br />{' . date('Y-m-d H:i:s') . '} Error[' . $e->getCode() . '] => ' . $e->getMessage());
 }
