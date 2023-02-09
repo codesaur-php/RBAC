@@ -36,14 +36,6 @@ class Accounts extends Model
     protected function __initial()
     {
         $table = $this->getName();
-        if ($table != 'rbac_accounts') {
-            $this->setForeignKeyChecks(false);
-            $this->exec("ALTER TABLE $table ADD CONSTRAINT {$table}_fk_created_by FOREIGN KEY (created_by) REFERENCES rbac_accounts(id) ON DELETE SET NULL ON UPDATE CASCADE");
-            $this->exec("ALTER TABLE $table ADD CONSTRAINT {$table}_fk_updated_by FOREIGN KEY (updated_by) REFERENCES rbac_accounts(id) ON DELETE SET NULL ON UPDATE CASCADE");
-            $this->setForeignKeyChecks(true);
-            return;
-        }
-        
         $now_date = \date('Y-m-d H:i:s');
         $password = $this->quote(\password_hash('password', \PASSWORD_BCRYPT));
         $query =

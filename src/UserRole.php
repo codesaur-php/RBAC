@@ -36,10 +36,6 @@ class UserRole extends Model
         $this->exec("ALTER TABLE $table ADD CONSTRAINT {$table}_fk_updated_by FOREIGN KEY (updated_by) REFERENCES rbac_accounts(id) ON DELETE SET NULL ON UPDATE CASCADE");
         $this->setForeignKeyChecks(true);
 
-        if ($table != 'rbac_user_role') {
-            return;
-        }
-        
         $nowdate = \date('Y-m-d H:i:s');
         $query = "INSERT INTO $table(id,created_at,user_id,role_id) VALUES(1,'$nowdate',1,1)";
         $this->exec($query);
