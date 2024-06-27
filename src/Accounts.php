@@ -20,7 +20,6 @@ class Accounts extends Model
             new Column('phone', 'varchar', 128),
            (new Column('email', 'varchar', 143))->unique(),
             new Column('photo', 'varchar', 255),
-            new Column('code', 'varchar', 6),
             new Column('status', 'tinyint', 1, 1),
             new Column('is_active', 'tinyint', 1, 1),
             new Column('created_at', 'datetime'),
